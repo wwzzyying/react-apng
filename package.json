@@ -1,14 +1,15 @@
 {
-  "name": "react-apng",
-  "version": "1.4.0",
+  "name": "@wwzzyying/react-apng",
+  "version": "1.0.0",
   "description": "A React component make apng to canvas for controling apng",
+  "types": "src/ApngComponent.d.ts",
   "main": "lib/ApngComponent.js",
-  "homepage": "https://github.com/sl2782087/react-apng.git",
+  "homepage": "https://github.com/wwzzyying/react-apng.git",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sl2782087/react-apng.git"
+    "url": "https://github.com/wwzzyying/react-apng.git"
   },
-  "author": "wangzongyu1@gmail.com",
+  "author": "wuzhiying11@gmail.com",
   "license": "MIT",
   "scripts": {
     "build": "babel src -d lib",
@@ -37,5 +38,11 @@
     "webpack-dev-server": "3.1.0"
   },
   "readmeFilename": "README.md",
-  "keywords": ["react", "react-component", "apng-js", "apng", "canvas"]
+  "keywords": [
+    "react",
+    "react-component",
+    "apng-js",
+    "apng",
+    "canvas"
+  ]
 }

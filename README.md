@@ -2,6 +2,13 @@
 
 APNG implementation on canvas as a [React.js](http://facebook.github.io/react) component, provides functions for control it (base on [apng-js](https://github.com/davidmz/apng-js)).
 
+## Notice
+
+**Based on [react-apng](https://github.com/sl2782087/react-apng)**
+
+* added support for callback events in [apng-js](https://github.com/davidmz/apng-js), such as play, frame, end, and other events.
+* added Typescript declaration of `ApngComponent`
+
 ## Demo & Examples
 
 Live demo: [https://sl2782087.github.io/react-apng/](https://sl2782087.github.io/react-apng/)
@@ -20,11 +27,11 @@ Then open [`localhost:8080/docs/`](http://localhost:8080/docs/) in a browser.
 react-apng is available through npm or yarn:
 
 ```
-npm install react-apng --save
+npm install @wwzzyying/react-apng --save
 ```
 
 ```
-yarn add react-apng --save
+yarn add @wwzzyying/react-apng --save
 ```
 
 ## Usage
@@ -33,7 +40,7 @@ Require the react-apng component and render it with JSX:
 
 ```javascript
 import React from 'react';
-import ApngComponent from 'react-apng';
+import ApngComponent from '@wwzzyying/react-apng';
 //const ApngComponent = require('react-apng'); or this way
 import apic1 from './apic1.png';
 
@@ -91,6 +98,11 @@ You can interact with the component instance using a `ref` after the `componentD
 * `src` `string` local image path
 * `autoPlay` `bool` auto play apng (default false)
 * `rate` `floot` apng play rate (default 1.0)
+* `onPlay` playback started
+* `onFrame` frame played (frame number passed as event parameter)
+* `onPause` playback paused
+* `onStop` playback stopped
+* `onEnd` playback ended (for APNG with finite count of plays)
 * `onClick,onMouseOver...` `function` bind events like a real dom
 
 Copyright (c) 2018 wangzy [MIT](LICENSE) Licensed.
