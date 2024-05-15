@@ -32,7 +32,6 @@ export default class extends EventEmitter {
         this._apng = apng;
         this.context = context;
         this.stop();
-        this.hasPerformance = typeof performance !== 'undefined';
         if (autoPlay) {
             this.play();
         }
@@ -59,7 +58,6 @@ export default class extends EventEmitter {
         if (this._currentFrameNumber === this._apng.frames.length - 1) {
             this._numPlays++;
             if (this._apng.numPlays !== 0 && this._numPlays >= this._apng.numPlays) {
-                this.emit('end');
                 this._ended = true;
                 this._paused = true;
             }
@@ -82,6 +80,11 @@ export default class extends EventEmitter {
         }
 
         this.context.drawImage(frame.imageElement, frame.left, frame.top);
+
+        this.emit('frame', this._currentFrameNumber);
+        if (this._ended) {
+            this.emit('end');
+        }
     }
 
     // playback
@@ -97,22 +100,21 @@ export default class extends EventEmitter {
             this.stop();
         }
         this._paused = false;
-        let performance = this.hasPerformance ? performance || window.performance : Date;   // supports ios8 Safari
+
         let nextRenderTime = performance.now() + this.currentFrame.delay / this.playbackRate;
         const tick = now => {
-            const _now = this.hasPerformance? now : Date.now(); // supports ios8 Safari
             if (this._ended || this._paused) {
                 return;
             }
-            if (_now >= nextRenderTime) {
-                while (_now - nextRenderTime >= this._apng.playTime / this.playbackRate) {
+            if (now >= nextRenderTime) {
+                while (now - nextRenderTime >= this._apng.playTime / this.playbackRate) {
                     nextRenderTime += this._apng.playTime / this.playbackRate;
                     this._numPlays++;
                 }
                 do {
                     this.renderNextFrame();
                     nextRenderTime += this.currentFrame.delay / this.playbackRate;
-                } while (!this._ended && _now > nextRenderTime);
+                } while (!this._ended && now > nextRenderTime);
             }
             requestAnimationFrame(tick);
         };
