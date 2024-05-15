@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import parseAPNG from './apngJs/parser';
 import { getImgBuffer } from './ajax';
 
@@ -34,6 +35,27 @@ class ApngComponent extends React.Component {
     componentDidMount() {
         this.getImgData();
     }
+
+    onPlay() {
+        this.props.onPlay && this.props.onPlay();
+    }
+
+    onFrame(frame) {
+        this.props.onFrame && this.props.onFrame(frame);
+    }
+
+    onPause() {
+        this.props.onPause && this.props.onPause();
+    }
+
+    onStop() {
+        this.props.onStop && this.props.onStop();
+    }
+
+    onEnd() {
+        this.props.onEnd && this.props.onEnd();
+    }
+
     reset = nextProps => {
         const { src = '', rate = 1.0, autoPlay = false } = nextProps;
         this.stop();
@@ -129,6 +151,19 @@ class ApngComponent extends React.Component {
             }
             this.player.on('end', () => {
                 this.isPlay = false;
+                this.onEnd();
+            });
+            this.player.on('play', () => {
+                this.onPlay();
+            });
+            this.player.on('pause', () => {
+                this.onPause();
+            });
+            this.player.on('stop', () => {
+                this.onStop();
+            });
+            this.player.on('frame', (frame) => {
+                this.onFrame(frame);
             });
         } else {
             this.setState({
@@ -156,5 +191,18 @@ class ApngComponent extends React.Component {
         );
     }
 }
+
+ApngComponent.propTypes = {
+    className: PropTypes.string,
+    style: PropTypes.string,
+    src: PropTypes.string,
+    autoPlay: PropTypes.bool,
+    rate: PropTypes.number,
+    onPlay: PropTypes.func,
+    onPause: PropTypes.func,
+    onStop: PropTypes.func,
+    onEnd: PropTypes.func,
+    onFrame: PropTypes.func
+};
 
 export default ApngComponent;
