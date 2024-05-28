@@ -27,6 +27,18 @@ const CODELIST = [
     <ApngComponent
       ref="apngcom"
       onClick={this.apngPause}
+      onPlay={() => {
+        console.log('onPlay');
+      }}
+      onFrame={(frame) => {
+          console.log('onFrame', frame);
+      }}
+      onPause={() => {
+          console.log('onPause');
+      }}
+      onEnd={() => {
+          console.log('onEnd');
+      }}
       autoPlay={true}
       src={apic1}
     />
