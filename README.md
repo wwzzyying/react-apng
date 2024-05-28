@@ -8,6 +8,7 @@ APNG implementation on canvas as a [React.js](http://facebook.github.io/react) c
 
 * added support for callback events in [apng-js](https://github.com/davidmz/apng-js), such as play, frame, end, and other events.
 * added Typescript declaration of `ApngComponent`
+* fix apng-js occasional frame skipping after calling `pause`
 
 ## Demo & Examples
 
