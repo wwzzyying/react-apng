@@ -12,7 +12,7 @@ APNG implementation on canvas as a [React.js](http://facebook.github.io/react) c
 
 ## Demo & Examples
 
-Live demo: [https://sl2782087.github.io/react-apng/](https://sl2782087.github.io/react-apng/)
+Live demo: [https://wwzzyying.github.io/react-apng/](https://wwzzyying.github.io/react-apng/)
 
 To run the examples locally:
 

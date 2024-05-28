@@ -101,6 +101,18 @@ class App extends React.Component {
                         ref="apngcom2"
                         className="apng-box"
                         onClick={this.apngPause2}
+                        onPlay={() => {
+                            console.log('onPlay');
+                        }}
+                        onFrame={(frame) => {
+                            console.log('onFrame', frame);
+                        }}
+                        onPause={() => {
+                            console.log('onPause');
+                        }}
+                        onEnd={() => {
+                            console.log('onEnd');
+                        }}
                         autoPlay
                         src={apic1}
                     />
